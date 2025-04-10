@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Anime GODS</title>
+    <style>
+      /* Global Styles & Smooth Scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #000;
+        color: #fff;
+        overflow-x: hidden;
+      }
+      a {
+        cursor: pointer;
+      }
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #111;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        transition: top 0.3s;
+      }
+      header .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+      }
+      header .logo {
+        display: flex;
+        align-items: center;
+      }
+      header .logo img {
+        height: 40px;
+        margin-right: 10px;
+      }
+      header .logo span {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+      }
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        padding: 8px 12px;
+        transition: background 0.3s;
+      }
+      nav a:hover {
+        background-color: #00aaff;
+      }
+      nav input[type="text"] {
+        padding: 6px 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #222;
+        color: #fff;
+        margin-left: 20px;
+      }
+      /* Hamburger Menu */
+      #hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      #hamburger div {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 3px 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      #hamburger.open .line1 {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      #hamburger.open .line2 {
+        opacity: 0;
+      }
+      #hamburger.open .line3 {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      /* Hero Section with Video Background */
+      .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .hero video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.6);
+      }
+      .hero .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 120px 20px;
+      }
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+      .hero p {
+        font-size: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      /* Toggle Video Background Button */
+      .video-toggle {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.7);
+        border: 1px solid #00aaff;
+        color: #00aaff;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background 0.3s;
+        z-index: 3;
+      }
+      .video-toggle:hover {
+        background: #00aaff;
+        color: #000;
+      }
+      /* Section Styling */
+      section {
+        padding: 60px 20px;
+      }
+      section.fade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      section.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      section h2 {
+        text-align: center;
+        font-size: 36px;
+        color: #00aaff;
+        margin-bottom: 20px;
+      }
+      section p {
+        font-size: 18px;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 800px;
+        margin: 20px auto;
+      }
+      /* Featured Anime Cards */
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+      }
+      .card {
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        transition: transform 0.3s;
+        width: 280px;
+      }
+      .card:hover {
+        transform: scale(1.05);
+      }
+      .card img {
+        width: 100%;
+        border-radius: 4px;
+      }
+      .card h3 {
+        font-size: 24px;
+        color: #00aaff;
+        margin-top: 15px;
+      }
+      .card p {
+        font-size: 16px;
+      }
+      /* Gallery Section */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .gallery img {
+        width: 100%;
+        border-radius: 8px;
+        transition: transform 0.3s;
+      }
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+      /* Blog Section */
+      .blog-post {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #1a1a1a;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      }
+      .blog-post h3 {
+        font-size: 28px;
+        color: #00aaff;
+      }
+      .blog-post p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      /* Modern Contact Form */
+      .contact-form {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 30px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+      }
+      .contact-form label {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #00aaff;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-bottom: 2px solid #00aaff;
+        background: transparent;
+        color: #fff;
+        margin-bottom: 20px;
+        transition: border-bottom 0.3s;
+      }
+      .contact-form input:focus,
+      .contact-form textarea:focus {
+        outline: none;
+        border-bottom: 2px solid #00aaff;
+      }
+      .contact-form button {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #00aaff;
+        color: #000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+      .contact-form button:hover {
+        transform: scale(1.05);
+      }
+      /* Footer */
+      footer {
+        background-color: #111;
+        padding: 30px 20px;
+        text-align: center;
+      }
+      footer p {
+        font-size: 16px;
+      }
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      /* Media Queries */
+      @media (max-width: 768px) {
+        nav {
+          display: none;
+        }
+        #hamburger {
+          display: flex;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header id="header">
+      <div class="container">
+        <div class="logo">
+          <img src="https://tse1.mm.bing.net/th?id=OIG4.ltcBTYk5ZvgiyOlYLGm8&pid=ImgGn" alt="Anime Nexus Logo" />
+          <span>Anime Nexus</span>
+        </div>
+        <nav id="navLinks">
+          <a href="#">Home</a>
+          <a href="#about">About</a>
+          <a href="#anime">Anime</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <input type="text" placeholder="Search Anime..." />
+        </nav>
+        <div id="hamburger">
+          <div class="hamburger-line line1"></div>
+          <div class="hamburger-line line2"></div>
+          <div class="hamburger-line line3"></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO SECTION WITH VIDEO BACKGROUND -->
+    <section class="hero">
+      <video id="bgVideo" autoplay muted loop playsinline>
+        <source src="https://youtu.be/IrHTT2IEKpE?si=4LFPsDXySAZmQVwn" type="video.mp4" />
+      </video>
+      <div class="content">
+        <h1>Welcome to Anime Nexus</h1>
+        <p>
+          Discover anime like never before—experience stunning visuals and cutting‑edge animations.
+        </p>
+      </div>
+      <!-- Toggle Video Background Button -->
+      <button class="video-toggle" id="toggleVideo">Toggle Video</button>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="fade">
+      <div class="container">
+        <h2>About Anime Gods</h2>
+        <p>
+            Welcome to Anime Gods—a sanctuary for anime lovers and enthusiasts! Dive into a world where legendary characters, epic storylines, and breathtaking animation come to life. Whether you're here to explore top-tier anime recommendations, uncover hidden gems, or connect with fellow fans, Anime Gods is your gateway to the ultimate anime experience.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURED ANIME SECTION -->
+    <section id="anime" class="fade">
+      <div class="container">
+        <h2>Featured Anime</h2>
+        <div class="cards">
+          <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOoACmoW2T_eu44O3IoBJ6OczdyjXOnC7rqTqs__BOKAaQFHKkylplZY77JYdncHWGgDTjidKHLYif5_HZ_pClMx7AxjYlhCMPu9B2dRA" alt="Vinland Saga" />
+            <h3>Vinland saga</h3>
+            <p>Vinland Saga" follows Thorfinn, a young man seeking revenge for his father's death, as he journeys through a violent Viking world, evolving from a bloodthirsty warrior to a man striving for peace, inspired by his father's ideals. </p>
+          </div>
+          <div class="card">
+            <img src="https://m.media-amazon.com/images/M/MV5BZjliODY5MzQtMmViZC00MTZmLWFhMWMtMjMwM2I3OGY1MTRiXkEyXkFqcGc@._V1_.jpg" alt="Attack on Titan" />
+            <h3>Attack on Titan</h3>
+            <p>Attack on Titan is a Japanese anime series about humanity's fight against giant, man-eating Titans. The story follows Eren Jaeger and his friends as they join the military to destroy the Titans. </p>
+          </div>
+          <div class="card">
+            <img src="https://m.media-amazon.com/images/M/MV5BYTIwYzk3YmQtZmMwNS00ZDAwLTk5Y2MtOTEwODFlZmExMzliXkEyXkFqcGc@._V1_.jpg" alt="Solo Levelling" />
+            <h3>Solo Levelling</h3>
+            <p>"Solo Leveling" follows Sung Jin-woo, the weakest hunter, who gains the ability to level up and becomes a powerful hunter in a world where portals called "Gates" connect to monster-filled dungeons, and hunters with special abilities protect humanity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="fade">
+      <div class="container">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXG4-1_qtapPN405W2B3E_AzuwiTcqewDP6A&s" alt="Blue Exorcist" />
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/a2/Bleach_Thousand-Year_Blood_War.png" alt="Bleach Thousand Year Blood War" />
+          <img src="https://i.redd.it/7xcq3bzahjq91.jpg" alt="My Hero Academia" />
+          <img src="https://m.media-amazon.com/images/M/MV5BNDgzYzNhOGUtMWI1Mi00YjJkLWI2NGItOWFlNDE4ZjE0NGExXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Boruto" />
+          <img src="https://m.media-amazon.com/images/M/MV5BMTNjNGU4NTUtYmVjMy00YjRiLTkxMWUtNzZkMDNiYjZhNmViXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="One Piece" />
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blog" class="fade">
+      <div class="container">
+        <h2>Blog</h2>
+        <div class="blog-post">
+          <h3>The Evolution of Anime: Trends and Predictions</h3>
+          <p>
+            Explore how anime has transformed over the decades—from hand-drawn classics to digital masterpieces—and discover what the future holds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="fade">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form class="contact-form" action="#" method="POST">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Name" />
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" />
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Anime Nexus. All Rights Reserved.</p>
+        <div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Support</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- INTERACTIVITY & ANIMATIONS -->
+    <script>
+      // Hamburger Menu Toggle
+      (function () {
+        function toggleNav() {
+          var navLinks = document.getElementById("navLinks");
+          var hamburger = document.getElementById("hamburger");
+          if (navLinks.style.display === "block") {
+            navLinks.style.display = "flex";
+            navLinks.style.flexDirection = "row";
+            hamburger.classList.remove("open");
+          } else {
+            navLinks.style.display = "block";
+            navLinks.style.flexDirection = "column";
+            hamburger.classList.add("open");
+          }
+        }
+        var hamburger = document.getElementById("hamburger");
+        hamburger.addEventListener("click", toggleNav);
+        window.addEventListener("resize", function () {
+          var navLinks = document.getElementById("navLinks");
+          if (window.innerWidth > 768) {
+            navLinks.style.display = "flex";
+            navLinks.style.flexDirection = "row";
+            hamburger.style.display = "none";
+          } else {
+            navLinks.style.display = "none";
+            hamburger.style.display = "flex";
+          }
+        });
+        window.dispatchEvent(new Event("resize"));
+      })();
+
+      // Hide header on scroll
+      var prevScrollpos = window.pageYOffset;
+      window.onscroll = function () {
+        var currentScrollPos = window.pageYOffset;
+        document.getElementById("header").style.top = (prevScrollpos > currentScrollPos) ? "0" : "-70px";
+        prevScrollpos = currentScrollPos;
+      };
+
+      // Intersection Observer for Fade-in Sections
+      document.addEventListener("DOMContentLoaded", function () {
+        var sections = document.querySelectorAll("section.fade");
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2 });
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      });
+
+      // Toggle Video Background
+      document.getElementById("toggleVideo").addEventListener("click", function () {
+        var video = document.getElementById("bgVideo");
+        if (video.style.display === "none") {
+          video.style.display = "block";
+          this.innerText = "Hide Video";
+        } else {
+          video.style.display = "none";
+          this.innerText = "Show Video";
+        }
+      });
+    </script>
+  </body>
+</html>
