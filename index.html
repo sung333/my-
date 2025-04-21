@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chhetri Legacy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Playfair+Display:wght@700&display=swap');
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<!-- Navigation -->
+<nav class="fixed w-full py-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 shadow-sm">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+        <h1 class="text-2xl font-bold gradient-text font-['Playfair_Display']">Chhetri Dynasty</h1>
+        <div class="flex items-center space-x-8">
+            <ul class="hidden md:flex space-x-8 text-lg">
+                <li><a href="#hero" class="hover:text-indigo-500 nav-link">Home</a></li>
+                <li><a href="#timeline" class="hover:text-indigo-500 nav-link">Timeline</a></li>
+                <li><a href="#members" class="hover:text-indigo-500 nav-link">Family</a></li>
+                <li><a href="#contact" class="hover:text-indigo-500 nav-link">Connect</a></li>
+            </ul>
+            <button id="darkToggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800">
+                <svg class="w-6 h-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+                <svg class="w-6 h-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Parallax Hero Section -->
+<section id="hero" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 parallax" style="background-image: url('https://photos.fife.usercontent.google.com/pw/AP1GczPPh9NOhRJ85ryU0nb0FbbCgEyYQUmF0J3XC9Y9ivhPYrEcEE0P3SD3=w720-h480-s-no-gm?authuser=0')">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    </div>
+    <div class="container mx-auto px-6 relative z-10 text-center" data-aos="zoom-in">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text font-['Playfair_Display']">
+            The Chhetri Legacy
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+            Five generations of excellence, tradition, and innovation - Crafting a legacy since 1920
+        </p>
+        <lottie-player
+            src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json"
+            background="transparent"
+            speed="1"
+            style="width: 200px; height: 200px; margin: 0 auto;"
+            loop autoplay>
+        </lottie-player>
+    </div>
+</section>
+
+<!-- Interactive Timeline -->
+<section id="timeline" class="py-20 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-6 relative">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text font-['Playfair_Display']" data-aos="fade-up">
+            Family Timeline
+        </h2>
+        <div class="timeline relative">
+            <!-- Timeline Items -->
+            <div class="timeline-item mb-16" data-aos="fade-right">
+                <div class="timeline-content relative w-full md:w-1/2 ml-auto p-8 bg-gray-50 dark:bg-gray-700 rounded-xl shadow-lg">
+                    <div class="timeline-year absolute -left-8 top-4 w-16 h-16 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold">
+                        1920
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Paila Budha Chhetri</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Founded the family legacy with traditional values and community leadership
+                    </p>
+                </div>
+            </div>
+            <!-- Add more timeline items -->
+        </div>
+    </div>
+</section>
+
+<!-- Family Members Grid -->
+<section id="members" class="py-20 bg-gray-100 dark:bg-gray-900">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text font-['Playfair_Display']" data-aos="fade-up">
+            Family Members
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Member Card -->
+            <div class="member-card bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group transition-transform duration-300 hover:-translate-y-2" data-aos="zoom-in">
+                <img src="member.jpg" alt="Mohit Chhetri" class="w-full h-64 object-cover transition-opacity duration-300 group-hover:opacity-90">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Mohit Chhetri</h3>
+                    <p class="text-gray-600 dark:text-gray-400 mb-4">Digital Architect & Visionary</p>
+                    <div class="flex space-x-4">
+                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">
+                            View Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more member cards -->
+        </div>
+    </div>
+</section>
+
+<!-- Interactive Family Tree (Placeholder) -->
+<section class="py-20 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-6">
+        <div class="bg-gray-100 dark:bg-gray-900 rounded-2xl p-8 text-center min-h-[400px] flex items-center justify-center" data-aos="fade-up">
+            <p class="text-gray-500 text-xl">Interactive Family Tree Coming Soon</p>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-100 dark:bg-gray-900">
+    <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8" data-aos="fade-up">
+            <h2 class="text-3xl font-bold text-center mb-8 gradient-text font-['Playfair_Display']">
+                Connect With Us
+            </h2>
+            <form class="space-y-6">
+                <div>
+                    <input type="text" placeholder="Your Name" class="w-full p-4 bg-gray-50 dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 border-none">
+                </div>
+                <div>
+                    <input type="email" placeholder="Your Email" class="w-full p-4 bg-gray-50 dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 border-none">
+                </div>
+                <div>
+                    <textarea class="w-full p-4 bg-gray-50 dark:bg-gray-700 rounded-lg focus:ring-2 focus:ring-indigo-500 border-none" rows="5" placeholder="Your Message"></textarea>
+                </div>
+                <button class="w-full py-4 bg-gradient-to-r from-indigo-600 to-pink-600 text-white rounded-lg font-semibold hover:scale-[1.02] transition-transform">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Initialize AOS
+    AOS.init({
+        duration: 800,
+        once: true,
+        mirror: false
+    });
+
+    // Dark Mode Toggle
+    const darkToggle = document.getElementById('darkToggle');
+    darkToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            window.scrollTo({
+                top: target.offsetTop - 80,
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Parallax Effect
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        document.querySelector('.parallax').style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+</script>
+
+</body>
+</html>
